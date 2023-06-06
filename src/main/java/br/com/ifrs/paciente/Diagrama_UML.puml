@@ -1,0 +1,77 @@
+@startuml
+class Paciente {
+  - id: Long
+  - convenio: String
+  - cpf: String
+  - dataNascimento: Date
+  - emails: List<String>
+  - situacao: Situacao
+  - consultas: List<Consulta>
+  - prontuario: Prontuario
+
+  + Paciente(convenio: String, cpf: String, dataNascimento: Date, emails: List<String>, situacao: Situacao, consultas: List<Consulta>, prontuario: Prontuario)
+  + getters/setters
+}
+
+class Pessoa {
+  - nome: String
+  - endereco: String
+  - telefones: List<Telefone>
+
+  + Pessoa(nome: String, endereco: String ,telefones: List<String>)
+  + getters/setters
+}
+
+class Prontuario {
+  - id: Long
+  - data: Date
+  - descricao: String
+  - paciente: Paciente
+
+  + Prontuario(data: Date, descricao: String, paciente: Paciente)
+  + getters/setters
+}
+
+class Consulta {
+  - id: Long
+  - dataHoraInicio: Date
+  - dataHoraFim: Date
+  - paciente: Paciente
+  - medico: Medico
+
+  + Consulta(dataHoraInicio: Date, dataHoraFim: Date, paciente: Paciente, medico: Medico)
+  + getters/setters
+}
+
+class Medico {
+  - id: Long
+  - nome: String
+  - crm: String
+  - especialidade: String
+
+  + Medico(nome: String, crm: String, especialidade: String)
+  + getters/setters
+}
+
+class Telefone {
+  - id: Long
+  - numero: String
+
+  + Telefone(numero: String)
+  + getters/setters
+}
+
+enum Situacao {
+  NORMAL
+  EM_OBSER
+  HOSP
+}
+
+
+Pessoa --> Telefone
+Paciente --|> Pessoa
+Paciente --> Situacao
+Paciente *-- Prontuario
+Paciente -- Consulta
+Consulta -- Medico
+@enduml

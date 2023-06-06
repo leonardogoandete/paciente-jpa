@@ -1,20 +1,45 @@
-package br.com.ifrs.model;
+package br.com.ifrs.paciente.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Consulta {
-    private Date data;
-    private Date horario;
-    private Paciente paciente;
-    private Medico medico;
-    private Prontuario prontuario;
+@Entity
+public class Consulta implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    public Consulta(Date data, Date horario, Paciente paciente, Medico medico, Prontuario prontuario) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Temporal(TemporalType.DATE)
+    private Date data;
+
+    @Temporal(TemporalType.TIME)
+    private Date horario;
+
+    // outras propriedades da consulta
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Paciente paciente;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Medico medico;
+
+    public Consulta(){}
+    public Consulta(Date data, Date horario, Paciente paciente, Medico medico) {
         this.data = data;
         this.horario = horario;
         this.paciente = paciente;
         this.medico = medico;
-        this.prontuario = prontuario;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getData() {
@@ -49,19 +74,8 @@ public class Consulta {
         this.medico = medico;
     }
 
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
 
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
-    }
-
-    @Override
-    public String toString() {
-        return "Consulta realizada em " + data + " às " + horario + "\n" +
-                "Paciente: " + paciente + "\n" +
-                "Médico: " + medico + "\n" +
-                "Prontuário: " + prontuario;
-    }
 }
+
+
+

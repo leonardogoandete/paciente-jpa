@@ -7,7 +7,7 @@ services:
       #Senha do user 'root'
       MYSQL_ROOT_PASSWORD: example
       #Nome da base de dados
-      MYSQL_DATABASE: trabjpa
+      MYSQL_DATABASE: db
       #Usuario da base
       MYSQL_USER: leo
       #Senha da base

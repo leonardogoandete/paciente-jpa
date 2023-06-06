@@ -1,4 +1,4 @@
-package br.com.ifrs.util;
+package br.com.ifrs.paciente.utils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
