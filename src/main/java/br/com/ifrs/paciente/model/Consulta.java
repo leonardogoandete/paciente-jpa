@@ -12,13 +12,19 @@ public class Consulta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*
+        Estou utilizando a biblioteca do java.util.Date, escolhi por vir padrão no Java,
+        apesar de algumas limitações e respeitando o diagrama de classes.
+        Para esse tipo de bliblioteca é necessário informar que é do tipo temporal para o JPA e especificar a
+        ENUM do tipo DATE para guardar somente a data dd/mm/aaaa no banco.
+        */
+
     @Temporal(TemporalType.DATE)
     private Date data;
 
     @Temporal(TemporalType.TIME)
     private Date horario;
 
-    // outras propriedades da consulta
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Paciente paciente;

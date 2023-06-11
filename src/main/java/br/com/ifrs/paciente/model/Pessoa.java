@@ -4,7 +4,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+
 @Entity
+/*
+    Utilizei a estrategia de mapeamento com os dados em uma unica tabela, por ser mais rápido e simples,
+    Posso filtrar o tipo da herança utilizando uma coluna onde guardo o tipo da classe na linha
+    da tabela(DTYPE). Mesmo com o risco de valores pondendo ser nulo.
+    */
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -19,17 +19,20 @@ public class Paciente extends Pessoa implements Serializable {
     private String cpf;
 
     /*
-    Estou utilizando a biblioteca do java.util.Date, escolhi por vir padrão no Java,
-    apesar de algumas limitações e respeitando o diagrama de classes.
-    Para esse tipo de bliblioteca é necessário informar que é do tipo temporal para o JPA e especificar a
-    ENUM do tipo DATE para guardar somente a data dd/mm/aaaa no banco.
-    */
+        Estou utilizando a biblioteca do java.util.Date, escolhi por vir padrão no Java,
+        apesar de algumas limitações e respeitando o diagrama de classes.
+        Para esse tipo de bliblioteca é necessário informar que é do tipo temporal para o JPA e especificar a
+        ENUM do tipo DATE para guardar somente a data dd/mm/aaaa no banco.
+        */
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
     @ElementCollection
     private List<String> emails = new ArrayList<>();
 
+    /*
+        Utilizei a estratégia do tipo EnumType.String, escolhi salvar o valor em vez do ID da enum.
+        */
     @OneToOne
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
