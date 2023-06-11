@@ -31,7 +31,7 @@ public class Paciente extends Pessoa implements Serializable {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "prontuario_id")
     private Prontuario prontuario;
 
