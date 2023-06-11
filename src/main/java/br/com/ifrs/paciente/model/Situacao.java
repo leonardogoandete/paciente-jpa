@@ -31,4 +31,9 @@ public enum Situacao implements Serializable {
     public String getDescricao() {
         return descricao;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + "descricao='" + descricao;
+    }
 }

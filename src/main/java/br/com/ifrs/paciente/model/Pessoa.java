@@ -3,6 +3,7 @@ package br.com.ifrs.paciente.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -66,6 +67,27 @@ public class Pessoa implements Serializable {
 
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id +
+                "\nnome='" + nome +
+                "\nendereco='" + endereco +
+                "\ntelefones=" + telefones;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return Objects.equals(id, pessoa.id) && Objects.equals(nome, pessoa.nome) && Objects.equals(endereco, pessoa.endereco) && Objects.equals(telefones, pessoa.telefones);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, endereco, telefones);
     }
 }
 

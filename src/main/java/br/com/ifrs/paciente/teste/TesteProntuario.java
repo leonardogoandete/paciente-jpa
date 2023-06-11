@@ -12,6 +12,7 @@ public class TesteProntuario {
         //new ProntuarioDAO().salvar(prontuario);
 
         Prontuario pt = new ProntuarioDAO().buscarPorId(2l);
+
         //Prontuario pt2 = new Prontuario(pt.getData(),pt.getDescricao());
         //System.out.println(pt.toString());
         new ProntuarioDAO().remover(pt);

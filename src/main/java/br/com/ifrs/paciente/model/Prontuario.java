@@ -3,6 +3,7 @@ package br.com.ifrs.paciente.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Prontuario implements Serializable {
@@ -56,5 +57,18 @@ public class Prontuario implements Serializable {
     @Override
     public String toString() {
         return "data=" + data + "\ndescricao= " + descricao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prontuario that = (Prontuario) o;
+        return Objects.equals(id, that.id) && Objects.equals(data, that.data) && Objects.equals(descricao, that.descricao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, data, descricao);
     }
 }

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Medico implements Serializable {
@@ -57,6 +58,27 @@ public class Medico implements Serializable {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    @Override
+    public String toString() {
+        return  "id=" + id +
+                "\nnome=" + nome +
+                "\ncrm=" + crm +
+                "\nespecialidade=" + especialidade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Medico medico = (Medico) o;
+        return Objects.equals(id, medico.id) && Objects.equals(nome, medico.nome) && Objects.equals(crm, medico.crm) && Objects.equals(especialidade, medico.especialidade);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, crm, especialidade);
     }
 }
 

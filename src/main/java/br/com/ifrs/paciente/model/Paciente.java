@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Paciente extends Pessoa implements Serializable {
@@ -113,6 +114,29 @@ public class Paciente extends Pessoa implements Serializable {
         this.prontuario = prontuario;
     }
 
+    @Override
+    public String toString() {
+        return "id=" + id +
+                "\nconvenio=" + convenio +
+                "\ncpf=" + cpf +
+                "\nData Nascimento=" + dataNascimento +
+                "\nemails=" + emails +
+                "\nsituacao=" + situacao +
+                "\nconsultas=" + consultas +
+                "\nprontuario=" + prontuario;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Paciente paciente = (Paciente) o;
+        return Objects.equals(id, paciente.id) && Objects.equals(convenio, paciente.convenio) && Objects.equals(cpf, paciente.cpf) && Objects.equals(dataNascimento, paciente.dataNascimento) && Objects.equals(emails, paciente.emails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, convenio, cpf, dataNascimento, emails);
+    }
 }
 
