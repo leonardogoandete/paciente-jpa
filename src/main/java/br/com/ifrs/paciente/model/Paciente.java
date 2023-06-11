@@ -18,6 +18,12 @@ public class Paciente extends Pessoa implements Serializable {
 
     private String cpf;
 
+    /*
+    Estou utilizando a biblioteca do java.util.Date, escolhi por vir padrão no Java,
+    apesar de algumas limitações e respeitando o diagrama de classes.
+    Para esse tipo de bliblioteca é necessário informar que é do tipo temporal para o JPA e especificar a
+    ENUM do tipo DATE para guardar somente a data dd/mm/aaaa no banco.
+    */
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
