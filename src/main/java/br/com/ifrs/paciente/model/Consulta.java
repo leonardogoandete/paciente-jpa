@@ -83,11 +83,11 @@ public class Consulta implements Serializable {
 
     @Override
     public String toString() {
-        return  "Prontuario " + id +
+        return  "\nCONSULTA:" +
                 "\nData=" + data +
                 "\nHorario=" + horario +
                 "\npaciente=" + paciente +
-                "\nmedico=" + medico;
+                "\nmedico=" + medico +"\n";
     }
 
     @Override

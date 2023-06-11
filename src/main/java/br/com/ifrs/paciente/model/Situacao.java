@@ -34,6 +34,6 @@ public enum Situacao implements Serializable {
 
     @Override
     public String toString() {
-        return "id=" + id + "descricao='" + descricao;
+        return descricao;
     }
 }

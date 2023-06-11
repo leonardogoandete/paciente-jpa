@@ -7,7 +7,8 @@ import br.com.ifrs.paciente.model.Paciente;
 public class TesteMedico {
     public static void main(String[] args) {
 
-        Medico medico = new Medico("Leon","RS-34567","Fisiatra");
-        new MedicoDAO().salvar(medico);
+//        Medico medico = new Medico("Leon","RS-34567","Fisiatra");
+//        new MedicoDAO().salvar(medico);
+        System.out.println(new MedicoDAO().listarTodos());
     }
 }

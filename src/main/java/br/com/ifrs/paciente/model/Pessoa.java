@@ -2,6 +2,7 @@ package br.com.ifrs.paciente.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class Pessoa implements Serializable {
 
     private String endereco;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pessoa_id")
     private List<Telefone> telefones;
 
@@ -71,9 +72,8 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "id=" + id +
-                "\nnome='" + nome +
-                "\nendereco='" + endereco +
+        return  "\nnome=" + nome +
+                "\nendereco=" + endereco +
                 "\ntelefones=" + telefones;
     }
 
