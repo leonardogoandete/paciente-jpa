@@ -40,7 +40,7 @@ public class Paciente extends Pessoa implements Serializable {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true) // quando o prontuario não estiver ligado a um Paciente ele será removido
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "prontuario_id")
     private Prontuario prontuario;
 

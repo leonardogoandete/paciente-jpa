@@ -52,4 +52,9 @@ public class Prontuario implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        return "data=" + data + "\ndescricao= " + descricao;
+    }
 }
