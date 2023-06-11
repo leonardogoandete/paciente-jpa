@@ -86,8 +86,8 @@ public class Consulta implements Serializable {
         return  "\nCONSULTA:" +
                 "\nData=" + data +
                 "\nHorario=" + horario +
-                "\npaciente=" + paciente +
-                "\nmedico=" + medico +"\n";
+                "\npaciente=" + paciente.getNome() +
+                "\nmedico=" + medico.getNome() +"\n";
     }
 
     @Override

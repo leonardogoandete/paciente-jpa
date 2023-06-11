@@ -8,7 +8,10 @@ public class TesteConsulta {
     public static void main(String[] args) {
 //        Consulta consulta = new Consulta(new Date(),new Date(),null,null);
 //        new ConsultaDAO().salvar(consulta);
-//        System.out.println(new ConsultaDAO().buscarPorId(4l));
-        System.out.println(new ConsultaDAO().listarTodos());
+        Consulta consulta = new ConsultaDAO().buscarPorId(2l);
+        System.out.println(consulta);
+        Consulta consulta1 = new Consulta();
+        //System.out.println(new ConsultaDAO().listarTodos());
+        new ConsultaDAO().salvar(new Consulta(new Date(),new Date(), null,null));
     }
 }

@@ -31,7 +31,9 @@ public class TestePaciente {
 //
 //        new PacienteDAO().salvar(paciente);
 
-        System.out.println(new PacienteDAO().listarTodos());
+        //System.out.println(new PacienteDAO().listarTodos());
+        // Pesquisa pelo nome
+        //System.out.println(new PacienteDAO().buscarPorNome("Leo"));
     }
 
 }

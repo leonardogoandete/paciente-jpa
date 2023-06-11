@@ -17,6 +17,7 @@ public class TesteProntuario {
 //        System.out.println(pt.toString());
 //        new ProntuarioDAO().remover(pt);
 
-        System.out.println(new ProntuarioDAO().listarTodos());
+        //System.out.println(new ProntuarioDAO().listarTodos());
+        new ProntuarioDAO().salvar(new Prontuario(new Date(), "Teste de inserção"));
     }
 }

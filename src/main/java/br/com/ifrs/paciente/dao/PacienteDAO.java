@@ -59,4 +59,16 @@ public class PacienteDAO {
             entityManager.close();
         }
     }
+
+    public List<Paciente> buscarPorNome(String nome) {
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        try {
+            return entityManager.createQuery("SELECT p FROM Paciente p WHERE p.nome LIKE :nome", Paciente.class)
+                    .setParameter("nome", "%" + nome + "%")
+                    .getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
 }
