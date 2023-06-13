@@ -23,6 +23,12 @@ public class Consulta implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date data;
 
+    /*
+        Estou utilizando a biblioteca do java.util.Date, escolhi por vir padrão no Java,
+        apesar de algumas limitações e respeitando o diagrama de classes.
+        Para esse tipo de bliblioteca é necessário informar que é do tipo temporal para o JPA e especificar a
+        ENUM do tipo TIME para guardar somente a hora no banco.
+        */
     @Temporal(TemporalType.TIME)
     private Date horario;
 

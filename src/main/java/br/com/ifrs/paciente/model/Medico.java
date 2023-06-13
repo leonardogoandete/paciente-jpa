@@ -1,10 +1,8 @@
 package br.com.ifrs.paciente.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +18,9 @@ public class Medico implements Serializable {
     private String crm;
 
     private String especialidade;
+
+    @OneToMany(fetch = FetchType.EAGER ,mappedBy = "medico", cascade = CascadeType.ALL)
+    private List<Consulta> consultas;
 
     public Medico(){}
     public Medico(String nome, String crm, String especialidade) {
@@ -58,6 +59,14 @@ public class Medico implements Serializable {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
     }
 
     @Override

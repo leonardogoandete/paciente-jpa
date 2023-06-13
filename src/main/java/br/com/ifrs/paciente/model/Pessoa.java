@@ -32,10 +32,9 @@ public class Pessoa implements Serializable {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String endereco, List<Telefone> telefones) {
+    public Pessoa(String nome, String endereco) {
         this.nome = nome;
         this.endereco = endereco;
-        this.telefones = telefones;
     }
 
     public Long getId() {

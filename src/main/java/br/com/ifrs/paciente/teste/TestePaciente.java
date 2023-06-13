@@ -1,11 +1,13 @@
 package br.com.ifrs.paciente.teste;
 
 
+import br.com.ifrs.paciente.dao.PessoaDAO;
 import br.com.ifrs.paciente.model.*;
 import br.com.ifrs.paciente.dao.PacienteDAO;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,14 +26,17 @@ public class TestePaciente {
 //        emails.add("leo@leo.com");
 //        emails.add("laika@laika.com");
 //
-//        Paciente paciente = new Paciente("Leo", "Leo", telefones, "Unimed", "78945612354",
+//        Paciente paciente = new Paciente("Leo", "Leo", "Unimed", "78945612354",
 //                new Date(), emails, Situacao.EM_OBSER, consultas, prontuario);
-//        consultas.add(new Consulta(new Date(), new Date(), paciente, medico));
+//        consultas.add(new Consulta(new Date(123, 3,20), new Date(1900+15,6,5), paciente, medico));
 //        consultas.add(new Consulta(new Date(), new Date(), paciente, medico1));
 //
 //        new PacienteDAO().salvar(paciente);
-
-        //System.out.println(new PacienteDAO().listarTodos());
+        for (Paciente p : new PacienteDAO().listarTodos()) {
+            System.out.println(p.toString());
+        }
+        //System.out.println();
+        //System.out.println(new PessoaDAO().listarTodos());
         // Pesquisa pelo nome
         //System.out.println(new PacienteDAO().buscarPorNome("Leo"));
     }

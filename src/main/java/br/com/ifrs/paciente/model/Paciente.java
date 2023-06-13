@@ -28,6 +28,9 @@ public class Paciente extends Pessoa implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
+    /*
+    fazer explicação
+     */
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> emails = new ArrayList<>();
 
@@ -41,14 +44,14 @@ public class Paciente extends Pessoa implements Serializable {
     @OneToMany(fetch = FetchType.EAGER ,mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "prontuario_id")
     private Prontuario prontuario;
 
     public Paciente(){}
 
-    public Paciente(String nome, String endereco, List<Telefone> telefones, String convenio, String cpf, Date dataNascimento, List<String> emails, Situacao situacao, List<Consulta> consultas, Prontuario prontuario) {
-        super(nome, endereco, telefones);
+    public Paciente(String nome, String endereco, String convenio, String cpf, Date dataNascimento, List<String> emails, Situacao situacao, List<Consulta> consultas, Prontuario prontuario) {
+        super(nome, endereco);
         this.convenio = convenio;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
