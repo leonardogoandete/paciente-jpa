@@ -56,7 +56,7 @@ public class Prontuario implements Serializable {
 
     @Override
     public String toString() {
-        return "data=" + data + "\ndescricao= " + descricao;
+        return "\ndata: " + data + "\ndescricao: " + descricao;
     }
 
     @Override

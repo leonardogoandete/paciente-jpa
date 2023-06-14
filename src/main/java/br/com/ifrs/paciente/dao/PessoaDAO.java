@@ -4,6 +4,7 @@ import br.com.ifrs.paciente.model.Pessoa;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 public class PessoaDAO {
@@ -50,6 +51,24 @@ public class PessoaDAO {
             entityManager.close();
         }
     }
+
+    public List<Pessoa> buscarPorNome(String nome) {
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        try {
+            String sql = "SELECT * FROM PESSOA WHERE nome = ?";
+            Query query = entityManager.createNativeQuery(sql, Pessoa.class);
+            query.setParameter(1, nome);
+            List<Pessoa> resultados = query.getResultList();
+            if (!resultados.isEmpty()) {
+                return resultados;
+            }
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+
 
     public List<Pessoa> listarTodos() {
         EntityManager entityManager = JPAUtil.getEntityManager();
