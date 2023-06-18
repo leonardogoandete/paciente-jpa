@@ -71,7 +71,8 @@ public class Pessoa implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ID:").append(id);
+        sb.append("###########= PACIENTE =###########");
+        sb.append("\nID:").append(id);
         sb.append("\nNome:").append(nome);
         sb.append("\nEndereco:").append(endereco);
         sb.append("\nTelefones:");

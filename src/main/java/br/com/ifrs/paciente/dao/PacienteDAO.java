@@ -87,17 +87,17 @@ public class PacienteDAO {
         return null;
     }
 
-    public List<Paciente> buscarPorNome(String nome) {
+    public Paciente buscarPorCpf(String cpf) {
         try {
             entityManager = JPAUtil.getEntityManager();
-            return entityManager.createQuery("SELECT p FROM Paciente p WHERE p.nome LIKE :nome", Paciente.class)
-                    .setParameter("nome", "%" + nome + "%")
-                    .getResultList();
+            return entityManager.createQuery("SELECT p FROM Paciente p WHERE p.cpf = :cpf", Paciente.class)
+                    .setParameter("cpf", cpf)
+                    .getSingleResult();
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            System.out.println("Erro ao buscar pacientes por nome:\n"+ e.getMessage());
+            System.out.println("Erro ao buscar paciente por CPF:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }

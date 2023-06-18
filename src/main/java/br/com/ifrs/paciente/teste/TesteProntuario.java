@@ -7,21 +7,34 @@ import java.util.Date;
 
 public class TesteProntuario {
     public static void main(String[] args) {
-//        Prontuario prontuario = new Prontuario(new Date(),"Prontuario do teste Leonardo");
-//
-//        new ProntuarioDAO().salvar(prontuario);
-//
-//        Prontuario pt = new ProntuarioDAO().buscarPorId(2l);
-//
-//        Prontuario pt2 = new Prontuario(pt.getData(),pt.getDescricao());
-//        System.out.println(pt.toString());
-//        new ProntuarioDAO().remover(pt);
 
-        //System.out.println(new ProntuarioDAO().listarTodos());
-//        new ProntuarioDAO().salvar(new Prontuario(new Date(), "Teste de inserção"));
+//        // Cadastrar um prontuario
+//        Prontuario p = new Prontuario();
+//        p.setData(new Date(123,0,1));
+//        p.setDescricao("Teste de inserção de prontuario");
+//        new ProntuarioDAO().salvar(p);
 
-        for (Prontuario p : new ProntuarioDAO().listarTodos()) {
-            System.out.println(p.toString());
-        }
+//        // Atualizar prontuario
+//        Prontuario p = new ProntuarioDAO().buscarPorId(5L);
+//        p.setData(new Date(122,0,1));
+//        new ProntuarioDAO().atualizar(p);
+
+//        //Deletar prontuario
+//        Prontuario p = new ProntuarioDAO().buscarPorId(5L);
+//        new ProntuarioDAO().remover(p);
+
+//        //Listar todos os prontuarios
+//        for (Prontuario p: new ProntuarioDAO().listarTodos()) {
+//            System.out.println(p);
+//        }
+
+//        //Buscar prontuario por Data
+//        Date data = new Date();
+//        data.setDate(1);
+//        data.setMonth(0);
+//        data.setYear(123);
+//        for (Prontuario p : new ProntuarioDAO().buscarPorData(data)) {
+//            System.out.println(p);
+//        }
     }
 }

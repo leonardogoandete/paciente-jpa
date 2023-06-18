@@ -1,9 +1,11 @@
 package br.com.ifrs.paciente.dao;
 
 import br.com.ifrs.paciente.model.Consulta;
+import br.com.ifrs.paciente.model.Medico;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
+import java.util.Date;
 import java.util.List;
 
 public class ConsultaDAO {
@@ -66,6 +68,23 @@ public class ConsultaDAO {
                 entityManager.getTransaction().rollback();
             }
             System.out.println("Erro ao buscar consulta por ID:\n"+ e.getMessage());
+        } finally {
+            entityManager.close();
+        }
+        return null;
+    }
+
+    public Consulta buscarPorHorario(Date horario) {
+        try {
+            entityManager = JPAUtil.getEntityManager();
+            return entityManager.createQuery("SELECT c FROM Consulta c WHERE c.horario = :horario", Consulta.class)
+                    .setParameter("horario",horario)
+                    .getSingleResult();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao buscar consulta por horario:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }

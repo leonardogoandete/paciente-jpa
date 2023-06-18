@@ -1,9 +1,11 @@
 package br.com.ifrs.paciente.dao;
 
+import br.com.ifrs.paciente.model.Consulta;
 import br.com.ifrs.paciente.model.Prontuario;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
+import java.util.Date;
 import java.util.List;
 
 public class ProntuarioDAO {
@@ -66,6 +68,23 @@ public class ProntuarioDAO {
                 entityManager.getTransaction().rollback();
             }
             System.out.println("Erro ao buscar prontuario por ID:\n"+ e.getMessage());
+        } finally {
+            entityManager.close();
+        }
+        return null;
+    }
+
+    public List<Prontuario> buscarPorData(Date data) {
+        try {
+            entityManager = JPAUtil.getEntityManager();
+            return entityManager.createQuery("SELECT p FROM Prontuario p WHERE p.data = :data", Prontuario.class)
+                    .setParameter("data",data)
+                    .getResultList();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao buscar prontuario por data:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }

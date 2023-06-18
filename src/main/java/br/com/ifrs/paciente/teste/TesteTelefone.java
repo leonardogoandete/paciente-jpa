@@ -7,18 +7,25 @@ import java.util.Date;
 
 public class TesteTelefone {
     public static void main(String[] args) {
-//        Telefone telefone = new Telefone("519911223344");
-//
-//        System.out.println(telefone.toString());
-//        new TelefoneDAO().salvar(telefone);
-//
-//        System.out.println(new TelefoneDAO().listarTodos());
-//        System.out.println(new TelefoneDAO().listarTodos());
-//        Telefone tel = new TelefoneDAO().buscarPorId(1L);
-//        new TelefoneDAO().remover(tel);
-//        System.out.println(new TelefoneDAO().listarTodos());
-//        new TelefoneDAO().salvar(new Telefone(51,947563892L));
+//        // Cadastrar um telefone
+//        Telefone t = new Telefone(53,999999999L);
+//        new TelefoneDAO().salvar(t);
 
-        System.out.println(new TelefoneDAO().buscarPorNumero(987456321L));
+//        // Atualizar Telefone
+//        Telefone p = new TelefoneDAO().buscarPorId(5L);
+//        p.setNumero(999999998L);
+//        new TelefoneDAO().atualizar(p);
+
+//        //Deletar Telefone
+//        Telefone p = new TelefoneDAO().buscarPorId(6L);
+//        new TelefoneDAO().remover(p);
+
+//        //Listar todos os Telefones
+//        for (Telefone p: new TelefoneDAO().listarTodos()) {
+//            System.out.println(p);
+//        }
+
+//        //Buscar Telefone por numero
+//        System.out.println(new TelefoneDAO().buscarPorNumero(999999998L));
     }
 }

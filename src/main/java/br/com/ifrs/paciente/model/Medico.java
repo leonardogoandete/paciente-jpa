@@ -61,7 +61,7 @@ public class Medico implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ID:").append(id);
+        sb.append("\nMedico ID:").append(id);
         sb.append("\ncrm: ").append(crm);
         sb.append("\nespecialidade: ").append(especialidade);
         sb.append("\nconsultas: ");

@@ -7,26 +7,24 @@ import br.com.ifrs.paciente.model.Paciente;
 public class TesteMedico {
     public static void main(String[] args) {
 
-//        Medico medico = new Medico("Leon","RS-34567","Fisiatra");
+//        //Salvar medico
+//        Medico medico = new Medico("CRM/RS-34567","Fisiatra");
 //        new MedicoDAO().salvar(medico);
-        //System.out.println(new MedicoDAO().listarTodos());
 
+//        //Atualizar CRM de um medico
 //        Medico med = new MedicoDAO().buscarPorId(2l);
-//        med.setCrm("SC-1234");
+//        med.setCrm("CRM/RS-12345");
 //        new MedicoDAO().atualizar(med);
 
-//        System.out.println(med);
-//        new MedicoDAO().salvar(new Medico("CRM/MG-1023", "Clinico Geral"));
-
+//        //Listar todos os medicos
 //        for (Medico m : new MedicoDAO().listarTodos()) {
 //            System.out.println(m.toString());
 //        }
 
+//        //Buscar Medico utilizando ID
+//        System.out.println(new MedicoDAO().buscarPorId(3L));
 
-        //Atualizar Especialidade
-        Medico m = new MedicoDAO().buscarPorId(2L);
-        m.setEspecialidade("Pediatra");
-        new MedicoDAO().atualizar(m);
-        //System.out.println(new MedicoDAO().buscarPorCrm("SC-95468").toString());
+//        //Buscar Medico utilizando codigo CRM
+//        System.out.println(new MedicoDAO().buscarPorCrm("CRM/RS-34567"));
     }
 }

@@ -140,11 +140,10 @@ public class Paciente extends Pessoa implements Serializable {
             sb.append("Nenhum email registrado");
         }
         sb.append("\nSituacao: ").append(situacao);
-        sb.append("\n#--------------#");
-        sb.append("\nConsultas: ");
+        sb.append("\n#-----| CONSULTAS |-----#");
         if (consultas != null && !consultas.isEmpty()) {
             for (Consulta consulta : consultas) {
-                sb.append(consulta.toString()).append(", ");
+                sb.append(consulta.toString());
             }
         } else {
             sb.append("Nenhuma consulta registrada");
