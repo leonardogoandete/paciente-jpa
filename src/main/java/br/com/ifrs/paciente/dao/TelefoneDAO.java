@@ -1,6 +1,5 @@
 package br.com.ifrs.paciente.dao;
 
-import br.com.ifrs.paciente.model.Pessoa;
 import br.com.ifrs.paciente.model.Telefone;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
@@ -15,6 +14,7 @@ public class TelefoneDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(telefone);
             entityManager.getTransaction().commit();
+            System.out.println("Telefone salvo com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -31,6 +31,7 @@ public class TelefoneDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(telefone);
             entityManager.getTransaction().commit();
+            System.out.println("Telefone atualizado com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -48,6 +49,7 @@ public class TelefoneDAO {
             telefone = entityManager.merge(telefone);
             entityManager.remove(telefone);
             entityManager.getTransaction().commit();
+            System.out.println("Telefone removido com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

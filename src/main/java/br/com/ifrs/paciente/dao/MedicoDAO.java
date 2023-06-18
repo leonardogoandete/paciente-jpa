@@ -14,6 +14,7 @@ public class MedicoDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(medico);
             entityManager.getTransaction().commit();
+            System.out.println("Medico salvo com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -30,6 +31,7 @@ public class MedicoDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(medico);
             entityManager.getTransaction().commit();
+            System.out.println("Medico atualizado com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -47,6 +49,7 @@ public class MedicoDAO {
             medico = entityManager.merge(medico);
             entityManager.remove(medico);
             entityManager.getTransaction().commit();
+            System.out.println("Medico removido com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

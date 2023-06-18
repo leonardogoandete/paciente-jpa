@@ -1,7 +1,6 @@
 package br.com.ifrs.paciente.dao;
 
 import br.com.ifrs.paciente.model.Consulta;
-import br.com.ifrs.paciente.model.Medico;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -16,6 +15,7 @@ public class ConsultaDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(consulta);
             entityManager.getTransaction().commit();
+            System.out.println("Consulta salva com sucesso!");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -32,6 +32,7 @@ public class ConsultaDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(consulta);
             entityManager.getTransaction().commit();
+            System.out.println("Consulta atualizada com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -49,6 +50,7 @@ public class ConsultaDAO {
             consulta = entityManager.merge(consulta);
             entityManager.remove(consulta);
             entityManager.getTransaction().commit();
+            System.out.println("Consulta removida com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

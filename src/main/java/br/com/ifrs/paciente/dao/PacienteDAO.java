@@ -14,6 +14,7 @@ public class PacienteDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(paciente);
             entityManager.getTransaction().commit();
+            System.out.println("Paciente salvo com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -30,6 +31,7 @@ public class PacienteDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(paciente);
             entityManager.getTransaction().commit();
+            System.out.println("Paciente atualizado com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -47,6 +49,7 @@ public class PacienteDAO {
             paciente = entityManager.merge(paciente);
             entityManager.remove(paciente);
             entityManager.getTransaction().commit();
+            System.out.println("Paciente removido com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

@@ -1,6 +1,5 @@
 package br.com.ifrs.paciente.dao;
 
-import br.com.ifrs.paciente.model.Consulta;
 import br.com.ifrs.paciente.model.Prontuario;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
@@ -16,6 +15,7 @@ public class ProntuarioDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(prontuario);
             entityManager.getTransaction().commit();
+            System.out.println("Prontuario salvo com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -32,6 +32,7 @@ public class ProntuarioDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(prontuario);
             entityManager.getTransaction().commit();
+            System.out.println("Prontuario salvo com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -49,6 +50,7 @@ public class ProntuarioDAO {
             prontuario = entityManager.merge(prontuario);
             entityManager.remove(prontuario);
             entityManager.getTransaction().commit();
+            System.out.println("Prontuario removido com sucesso");
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
