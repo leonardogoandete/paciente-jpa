@@ -4,79 +4,106 @@ import br.com.ifrs.paciente.model.Pessoa;
 import br.com.ifrs.paciente.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 
 public class PessoaDAO {
-
+    private EntityManager entityManager;
     public void salvar(Pessoa pessoa) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(pessoa);
             entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao salvar pessoa:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
     }
 
     public void atualizar(Pessoa pessoa) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.merge(pessoa);
             entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao atualizar pessoa:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
     }
 
     public void remover(Pessoa pessoa) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             entityManager.getTransaction().begin();
             pessoa = entityManager.merge(pessoa);
             entityManager.remove(pessoa);
             entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao remover pessoa:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
     }
 
     public Pessoa buscarPorId(Long id) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             return entityManager.find(Pessoa.class, id);
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao buscar pessoa por ID:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
+        return null;
     }
 
     public List<Pessoa> buscarPorNome(String nome) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
-            String sql = "SELECT * FROM PESSOA WHERE nome = ?";
-            Query query = entityManager.createNativeQuery(sql, Pessoa.class);
-            query.setParameter(1, nome);
-            List<Pessoa> resultados = query.getResultList();
-            if (!resultados.isEmpty()) {
-                return resultados;
+            entityManager = JPAUtil.getEntityManager();
+            return entityManager.createQuery("SELECT p FROM Pessoa p WHERE p.nome LIKE :nome", Pessoa.class)
+                    .setParameter("nome", "%" + nome + "%")
+                    .getResultList();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
             }
-            return null;
+            System.out.println("Erro ao buscar pessoas por nome:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
+        return null;
     }
 
 
 
     public List<Pessoa> listarTodos() {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             return entityManager.createQuery("SELECT p FROM Pessoa p", Pessoa.class).getResultList();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao listar pessoas:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
+        return null;
     }
 }
 

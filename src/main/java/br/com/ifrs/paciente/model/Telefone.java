@@ -12,10 +12,12 @@ public class Telefone implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String numero;
+    private int ddd;
+    private long numero;
 
     public Telefone(){}
-    public Telefone(String numero) {
+    public Telefone(int ddd,long numero) {
+        this.ddd = ddd;
         this.numero = numero;
     }
 
@@ -27,29 +29,26 @@ public class Telefone implements Serializable {
         this.id = id;
     }
 
-    public String getNumero() {
+    public int getDdd() {
+        return ddd;
+    }
+
+    public void setDdd(int ddd) {
+        this.ddd = ddd;
+    }
+
+    public long getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(long numero) {
         this.numero = numero;
     }
 
+
+
     @Override
     public String toString() {
-        return numero;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Telefone telefone = (Telefone) o;
-        return Objects.equals(id, telefone.id) && Objects.equals(numero, telefone.numero);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, numero);
+        return "("+ddd+")" + numero;
     }
 }

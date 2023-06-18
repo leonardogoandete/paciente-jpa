@@ -28,14 +28,11 @@ public class Paciente extends Pessoa implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
-    /*
-    fazer explicação
-     */
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> emails = new ArrayList<>();
 
     /*
-        Utilizei a estratégia do tipo EnumType.String, escolhi salvar o valor em vez do ID da enum.
+        Utilizei a estratégia do tipo EnumType.String, escolhi salvar a String em vez do codigo do valor da enum.
         */
     @OneToOne
     @Enumerated(EnumType.STRING)
@@ -44,7 +41,7 @@ public class Paciente extends Pessoa implements Serializable {
     @OneToMany(fetch = FetchType.EAGER ,mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "prontuario_id")
     private Prontuario prontuario;
 
@@ -59,6 +56,16 @@ public class Paciente extends Pessoa implements Serializable {
         this.situacao = situacao;
         this.consultas = consultas;
         this.prontuario = prontuario;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getConvenio() {
@@ -119,15 +126,35 @@ public class Paciente extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return  super.toString()+
-                "\nconvenio=" + convenio +
-                "\ncpf=" + cpf +
-                "\nData Nascimento=" + dataNascimento +
-                "\nemails=" + emails +
-                "\nsituacao=" + situacao +
-                "\nconsultas=" + consultas +
-                "\nprontuario=" + prontuario + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("\nConvenio: ").append(convenio);
+        sb.append("\nCPF: ").append(cpf);
+        sb.append("\nData Nascimento: ").append(dataNascimento.getDate()+"/"+(dataNascimento.getMonth()+1)+"/"+(dataNascimento.getYear()+1900));
+        sb.append("\nE-mails: ");
+        if (emails != null && !emails.isEmpty()) {
+            for (String email : emails) {
+                sb.append(email).append(", ");
+            }
+        } else {
+            sb.append("Nenhum email registrado");
+        }
+        sb.append("\nSituacao: ").append(situacao);
+        sb.append("\n#--------------#");
+        sb.append("\nConsultas: ");
+        if (consultas != null && !consultas.isEmpty()) {
+            for (Consulta consulta : consultas) {
+                sb.append(consulta.toString()).append(", ");
+            }
+        } else {
+            sb.append("Nenhuma consulta registrada");
+        }
+        sb.append("\n#--------------#");
+        sb.append("\nProntuario: ").append(prontuario);
+        sb.append("\n");
+        return sb.toString();
     }
+
 
     @Override
     public boolean equals(Object o) {

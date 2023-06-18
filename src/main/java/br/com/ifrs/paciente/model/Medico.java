@@ -13,8 +13,6 @@ public class Medico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-
     private String crm;
 
     private String especialidade;
@@ -23,8 +21,7 @@ public class Medico implements Serializable {
     private List<Consulta> consultas;
 
     public Medico(){}
-    public Medico(String nome, String crm, String especialidade) {
-        this.nome = nome;
+    public Medico(String crm, String especialidade) {
         this.crm = crm;
         this.especialidade = especialidade;
     }
@@ -35,14 +32,6 @@ public class Medico implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCrm() {
@@ -71,22 +60,33 @@ public class Medico implements Serializable {
 
     @Override
     public String toString() {
-        return  "\nnome=" + nome +
-                "\ncrm=" + crm +
-                "\nespecialidade=" + especialidade;
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:").append(id);
+        sb.append("\ncrm: ").append(crm);
+        sb.append("\nespecialidade: ").append(especialidade);
+        sb.append("\nconsultas: ");
+        if (consultas != null && !consultas.isEmpty()) {
+            for (Consulta consulta : consultas) {
+                sb.append(consulta.toString()+"\n");
+            }
+        } else {
+            sb.append("Nenhuma consulta registrada");
+        }
+        return sb.toString();
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Medico medico = (Medico) o;
-        return Objects.equals(id, medico.id) && Objects.equals(nome, medico.nome) && Objects.equals(crm, medico.crm) && Objects.equals(especialidade, medico.especialidade);
+        return Objects.equals(id, medico.id) && Objects.equals(crm, medico.crm) && Objects.equals(especialidade, medico.especialidade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, crm, especialidade);
+        return Objects.hash(id, crm, especialidade);
     }
 }
 

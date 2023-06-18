@@ -56,7 +56,7 @@ public class Prontuario implements Serializable {
 
     @Override
     public String toString() {
-        return "\ndata: " + data + "\ndescricao: " + descricao;
+        return "\nID: "+id +"\ndata: " + (data.getDate()+"/"+(data.getMonth()+1)+"/"+(data.getYear()+1900)) + "\ndescricao: " + descricao;
     }
 
     @Override

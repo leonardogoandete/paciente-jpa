@@ -7,56 +7,83 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 public class ConsultaDAO {
-
+    private EntityManager entityManager;
     public void salvar(Consulta consulta) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(consulta);
             entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao salvar consulta:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
     }
 
     public void atualizar(Consulta consulta) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.merge(consulta);
             entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao atualizar a consulta:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
     }
 
     public void remover(Consulta consulta) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             entityManager.getTransaction().begin();
             consulta = entityManager.merge(consulta);
             entityManager.remove(consulta);
             entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao remover consulta:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
     }
 
     public Consulta buscarPorId(Long id) {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             return entityManager.find(Consulta.class, id);
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao buscar consulta por ID:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
+        return null;
     }
 
     public List<Consulta> listarTodos() {
-        EntityManager entityManager = JPAUtil.getEntityManager();
         try {
+            entityManager = JPAUtil.getEntityManager();
             return entityManager.createQuery("SELECT c FROM Consulta c", Consulta.class).getResultList();
+        } catch (RuntimeException e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            System.out.println("Erro ao listar consultas:\n"+ e.getMessage());
         } finally {
             entityManager.close();
         }
+        return null;
     }
 }

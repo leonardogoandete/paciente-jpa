@@ -13,32 +13,27 @@ import java.util.List;
 
 public class TestePaciente {
     public static void main(String[] args) {
-//        List<String> emails = new ArrayList<>();
-//        List<Telefone> telefones = new ArrayList<>();
-//        List<Consulta> consultas = new ArrayList<>();
-//        Prontuario prontuario = new Prontuario(new Date(),"Prontuario do Leonardo");
-//        Medico medico = new Medico("Katiuscha Maria","CRM/RS 25432","Ortopedista");
-//        Medico medico1 = new Medico("Josebalda Maria","CRM/RS 25433","Dentista");
-//
-//        telefones.add(new Telefone("514848448448"));
-//        telefones.add(new Telefone("5128911681681"));
-//
-//        emails.add("leo@leo.com");
-//        emails.add("laika@laika.com");
-//
-//        Paciente paciente = new Paciente("Leo", "Leo", "Unimed", "78945612354",
-//                new Date(), emails, Situacao.EM_OBSER, consultas, prontuario);
-//        consultas.add(new Consulta(new Date(123, 3,20), new Date(1900+15,6,5), paciente, medico));
-//        consultas.add(new Consulta(new Date(), new Date(), paciente, medico1));
-//
-//        new PacienteDAO().salvar(paciente);
-        for (Paciente p : new PacienteDAO().listarTodos()) {
-            System.out.println(p.toString());
-        }
-        //System.out.println();
-        //System.out.println(new PessoaDAO().listarTodos());
-        // Pesquisa pelo nome
-        //System.out.println(new PacienteDAO().buscarPorNome("Leo"));
-    }
+        List<String> emails = new ArrayList<>();
+        List<Telefone> telefones = new ArrayList<>();
+        List<Consulta> consultas = new ArrayList<>();
+        Prontuario prontuario = new Prontuario(new Date(),"Prontuario do Leonardo");
+        Medico medico = new Medico("CRM/RS 25432","Ortopedista");
+        Medico medico1 = new Medico("CRM/RS 25433","Dentista");
 
+        telefones.add(new Telefone(51,4848448448L));
+        telefones.add(new Telefone(51,28911681681L));
+
+        emails.add("leo@leo.com");
+        emails.add("laika@laika.com");
+
+        Paciente paciente = new Paciente("Leo", "Leo", "Unimed", "78945612354",
+                new Date(), emails, Situacao.EM_OBSER, consultas, prontuario);
+        consultas.add(new Consulta(new Date(123, 3,20), new Date(1900+15,7,5), paciente, medico));
+        consultas.add(new Consulta(new Date(), new Date(), paciente, medico1));
+
+        new PacienteDAO().salvar(paciente);
+//        for (Paciente p : new PacienteDAO().listarTodos()) {
+//            System.out.println(p.toString());
+//        }
+    }
 }

@@ -89,11 +89,11 @@ public class Consulta implements Serializable {
 
     @Override
     public String toString() {
-        return  "\nCONSULTA:" +
-                "\nData=" + data +
-                "\nHorario=" + horario +
-                "\npaciente=" + paciente.getNome() +
-                "\nmedico=" + medico.getNome() +"\n";
+        return  "\nID: "+ id +
+                "\nData: " + data.getDate() +"/"+(data.getMonth()+1)+"/"+(data.getYear()+1900) +
+                "\nHorario: " + horario.getHours()+":"+horario.getMinutes() +
+                "\nPaciente: " + paciente.getNome() +
+                "\nMedico: " + medico.getEspecialidade()+"\n";
     }
 
     @Override

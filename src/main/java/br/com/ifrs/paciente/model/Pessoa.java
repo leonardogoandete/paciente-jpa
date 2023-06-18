@@ -70,9 +70,19 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return  "\nnome=" + nome +
-                "\nendereco=" + endereco +
-                "\ntelefones=" + telefones;
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID:").append(id);
+        sb.append("\nNome:").append(nome);
+        sb.append("\nEndereco:").append(endereco);
+        sb.append("\nTelefones:");
+        if (telefones != null && !telefones.isEmpty()) {
+            for (Telefone telefone : telefones) {
+                sb.append("("+telefone.getDdd()+")").append(telefone.getNumero()+",");
+            }
+        } else {
+            sb.append("Nenhum telefone registrado");
+        }
+        return sb.toString();
     }
 
     @Override

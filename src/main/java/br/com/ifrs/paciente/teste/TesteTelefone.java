@@ -17,6 +17,8 @@ public class TesteTelefone {
 //        Telefone tel = new TelefoneDAO().buscarPorId(1L);
 //        new TelefoneDAO().remover(tel);
 //        System.out.println(new TelefoneDAO().listarTodos());
-        new TelefoneDAO().salvar(new Telefone("51947563892"));
+//        new TelefoneDAO().salvar(new Telefone(51,947563892L));
+
+        System.out.println(new TelefoneDAO().buscarPorNumero(987456321L));
     }
 }
